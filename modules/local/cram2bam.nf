@@ -6,10 +6,16 @@ process CRAM2BAM {
 
     output:
     path bam_file
+    path bam_index
 
     script:
     bam_file = cram_file.baseName + ".bam"
+    bam_index = bam_file + ".bai"
     """
+    # Convert CRAM to BAM
     samtools view -b -o $bam_file $cram_file
+    
+    # Index the BAM file
+    samtools index $bam_file
     """
 }
