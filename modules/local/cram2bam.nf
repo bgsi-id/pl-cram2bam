@@ -3,6 +3,8 @@ process CRAM2BAM {
 
     input:
     path cram_file
+    path fasta
+    path fai
 
     output:
     path bam_file
@@ -16,6 +18,6 @@ process CRAM2BAM {
     samtools view -mm -m 100G -@ 30 -l 1 -b -o $bam_file $cram_file
     
     # Index the BAM file
-    samtools index -mm -m 100G -@ 30 $bam_file
+    samtools index -@ 30 $bam_file
     """
 }
