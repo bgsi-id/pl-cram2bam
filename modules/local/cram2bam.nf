@@ -15,7 +15,7 @@ process CRAM2BAM {
     bam_index = bam_file + ".bai"
     """
     # Convert CRAM to BAM
-    samtools view -mm -m 100G -@ 30 -l 1 -b -o $bam_file $cram_file
+    samtools view -mm -m 100G -@ 30 -l 1 -T $fasta -b -o $bam_file $cram_file
     
     # Index the BAM file
     samtools index -@ 30 $bam_file
